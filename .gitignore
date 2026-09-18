@@ -1,0 +1,16 @@
+# Course/recruiting document with third-party PII — must never be committed
+L3 Undergraduate Projects.docx
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Data (raw/large datasets kept out of git; document how to fetch them instead)
+data/*
+!data/.gitkeep
+
+# OS/editor
+.DS_Store
