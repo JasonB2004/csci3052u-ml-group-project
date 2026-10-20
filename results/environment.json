@@ -1,0 +1,24 @@
+{
+  "python": "3.13.2",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "numpy": "2.2.4",
+  "pandas": "2.2.3",
+  "scikit-learn": "1.9.1",
+  "matplotlib": "3.10.7",
+  "dataset": "data\\data.csv",
+  "dataset_sha256": "3ef126de5cefff26eb11fbb4237f1a1401cb64b488e2f1d598c23cedeb4c45ae",
+  "random_state": 42,
+  "extra_split_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "command": "python -m src.run_baselines"
+}

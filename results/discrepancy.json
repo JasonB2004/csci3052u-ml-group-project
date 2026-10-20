@@ -1,0 +1,53 @@
+{
+  "majority_valid_macro_f1": {
+    "m2_recorded": 0.222,
+    "analytic": 0.22203073387907513,
+    "reproduced": 0.2222222222222222
+  },
+  "stratified_valid_macro_f1": {
+    "analytic_approx": 0.3333333333333333,
+    "reproduced_seed42": 0.31341944205717226,
+    "reproduced_mean_10_seeds": 0.343112096275731,
+    "reproduced_std_10_seeds": 0.012136033872440275
+  },
+  "n_features": {
+    "m2_recorded": 169,
+    "reproduced": 169
+  },
+  "split_sizes": {
+    "m2_recorded": [
+      3096,
+      664,
+      664
+    ],
+    "reproduced": [
+      3096,
+      664,
+      664
+    ]
+  },
+  "numpy_vs_sklearn": {
+    "chosen_lambda": 0,
+    "sklearn_converged_at_chosen_lambda": false,
+    "valid_prediction_agreement": 0.9518072289156626,
+    "valid_macro_f1_numpy": 0.6607785177085185,
+    "valid_macro_f1_sklearn": 0.6511440027983643,
+    "final_J_numpy": 0.5558512983077798,
+    "final_J_sklearn": 0.5411573471952426,
+    "per_lambda": "see sklearn_check.csv"
+  },
+  "success_bar": {
+    "m2_preregistered": 0.272,
+    "softmax_valid_macro_f1": 0.6607785177085185,
+    "met": true
+  },
+  "second_sem_sensitivity": {
+    "valid_macro_f1_1st_sem_only": 0.6607785177085185,
+    "valid_macro_f1_with_2nd_sem": 0.6950440105847177
+  },
+  "chosen_hyperparameters": {
+    "alpha": 0.3,
+    "lambda": 0,
+    "n_iters": 5000
+  }
+}
