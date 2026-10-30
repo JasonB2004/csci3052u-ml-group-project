@@ -211,6 +211,29 @@ def check_split(X, X_train, X_valid, X_test):
     assert X_test.isnull().sum().sum() == 0
 
 
+def undersample(X_train, t_train, seed=RANDOM_STATE):
+    """
+    Balance the classes by undersampling, the same code as Lab 2 (stroke data) and M2 8.1.
+    Only ever call this on the training split: resampling validation or test would make
+    the scores misleading.
+
+    Parameters:
+        `X_train` - the training design matrix
+        `t_train` - the training labels
+        `seed` - random_state for the sampling
+    Returns: (X_bal, t_bal) with every class cut down to the size of the smallest class
+    """
+    train_df = X_train.assign(Target=t_train)
+    minority_size = train_df["Target"].value_counts().min()
+
+    balanced_parts = [part.sample(n=minority_size, random_state=seed)
+                      for _, part in train_df.groupby("Target")]
+    balanced_df = pd.concat(balanced_parts)
+    balanced_df = balanced_df.sample(frac=1, random_state=seed)
+
+    return balanced_df.drop(columns="Target"), balanced_df["Target"]
+
+
 def load_splits(seed=RANDOM_STATE, keep_second_sem=False):
     """
     Run the whole pipeline: load -> clean -> design matrix -> split -> checks -> normalize.

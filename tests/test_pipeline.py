@@ -7,7 +7,7 @@ Plain asserts, so no extra test package is needed. Every check prints a line whe
 """
 import numpy as np
 
-from src.data import (DATA_PATH, DATA_SHA256, continuous_cols, file_sha256, load_splits)
+from src.data import (DATA_PATH, DATA_SHA256, continuous_cols, file_sha256, load_splits, undersample)
 from src.evaluate import evaluate
 from src.models import SoftmaxRegression, add_bias_column, one_hot, softmax
 
@@ -96,6 +96,20 @@ def test_deterministic():
     print(f"ok  two runs give the same validation macro-F1 ({scores[0]:.4f})")
 
 
+def test_undersample_train_only():
+    # Lab 2 undersampling must only draw rows from the training split, and must leave
+    # every class the size of the smallest one
+    s = load_splits()
+    X_bal, t_bal = undersample(s["X_train"], s["t_train"])
+    assert set(X_bal.index) <= set(s["X_train"].index)
+    assert set(X_bal.index).isdisjoint(s["X_valid"].index)
+    assert set(X_bal.index).isdisjoint(s["X_test"].index)
+    counts = t_bal.value_counts()
+    assert counts.nunique() == 1 and counts.iloc[0] == s["t_train"].value_counts().min()
+    assert (t_bal == s["t_train"].loc[X_bal.index]).all()   # labels stay attached to their rows
+    print(f"ok  undersampling uses training rows only, {counts.iloc[0]} per class")
+
+
 if __name__ == "__main__":
     test_dataset_version()
     test_split_matches_m2()
@@ -104,4 +118,5 @@ if __name__ == "__main__":
     test_gradient_check()
     test_cost_decreases()
     test_deterministic()
+    test_undersample_train_only()
     print("All checks passed.")
