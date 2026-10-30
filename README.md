@@ -17,10 +17,13 @@ src/          reusable pipeline code
   models.py         softmax regression with L2 + gradient descent (NumPy, Week 5)
   evaluate.py       macro-F1, accuracy, per-class scores, confusion matrix
   run_baselines.py  regenerates every Milestone 3 result in results/
+  compare_models.py tunes kNN and a decision tree and regenerates every Milestone 4 result in results/m4/
 tests/        sanity checks (split, leakage, normalization, gradient check, determinism)
-notebooks/    milestone2_data_approval.ipynb, milestone3_baseline.ipynb (walkthrough)
-results/      baseline table, tuning grid, seed runs, sklearn check, figures, experiment log
-docs/         proposal, team contract, Milestone 3 technical memo (HTML source + PDF)
+notebooks/    milestone2_data_approval.ipynb, milestone3_baseline.ipynb, milestone4_models.ipynb
+results/      M3 baseline table, tuning grid, seed runs, sklearn check, figures, experiment log
+  m4/         M4 model comparison, kNN/tree grids, seed runs, imbalance, subgroups, figures
+milestone_4/  M4 progress report (.docx), slides (.pptx), speaker script
+docs/         proposal, team contract, Milestone 3 technical memo
 ```
 
 ## Setup
@@ -75,6 +78,19 @@ grid in `results/tuning_grid.csv`). The test set is not scored anywhere in Miles
 3. Open `results/baseline_table.md` and `results/sklearn_check.csv` to explain the discrepancy analysis
    (memo section 4).
 
+## Reproducing Milestone 4
+
+```bash
+.venv/bin/python -m tests.test_pipeline     # 8 checks
+.venv/bin/python -m src.compare_models      # ~25 s, rewrites results/m4/
+cd notebooks && ../.venv/bin/jupyter nbconvert --to notebook --execute --inplace milestone4_models.ipynb
+```
+
+`compare_models` reuses the M3 split, preprocessing and softmax settings (read from
+`results/discrepancy.json`), tunes kNN (odd k from 1 to 55, Euclidean and cosine) and a decision tree
+(the Lab 4 grid) on validation macro-F1, refits both on split seeds 0-9, and tests undersampling and
+class weights for the Enrolled class. The test set is still not scored.
+
 ## Milestones
 
 | # | Milestone | Due |
@@ -89,7 +105,12 @@ grid in `results/tuning_grid.csv`). The test set is not scored anywhere in Miles
 
 ## Status
 
+Milestone 4 (progress presentation): kNN (k = 7) and a decision tree (entropy, depth 12) compared
+with the M3 baseline on the same protocol. Softmax regression is still best (validation macro-F1
+0.667 ± 0.020 over 10 seeds, against 0.624 for the tree and 0.564 for kNN). Report, slides and
+script are in `milestone_4/`.
+
 Milestone 3 (baseline reproduction): pipeline in `src/`, naive benchmarks and a softmax-regression
 baseline, baseline table and discrepancy analysis in `results/` and
-`docs/Milestone3_Technical_Memo.pdf`. Validation macro-F1 is 0.661 (0.667 ± 0.020 over 10 split
+`docs/Baseline Reproduction Technical Memo.pdf`. Validation macro-F1 is 0.661 (0.667 ± 0.020 over 10 split
 seeds), against 0.222 for the majority class and the pre-registered success bar of 0.272.
