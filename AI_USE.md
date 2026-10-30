@@ -27,3 +27,12 @@ Required by the project rules (sections 9–10). One entry per milestone.
 **Before submission, every member must:** read `src/data.py`, `src/models.py` and
 `src/run_baselines.py`; be able to derive the softmax gradient (y − t)x and explain the λ = 0
 discrepancy (memo section 4); and confirm this statement is accurate.
+
+## Milestone 4
+
+| | |
+|---|---|
+| Tool | Claude Code (Anthropic) |
+| Purpose | Drafting `src/compare_models.py`, `undersample()` and its test, `notebooks/milestone4_models.ipynb`, the progress report, the slides and the speaker script. Editing the writing style of the report and slides. Writing the mock peer review described below. |
+| Material given to the tool | Our repository and M3 results, the TA's M4 report template, example slides and talk transcript, the course rubric, and our lab notebooks and lecture slides for methods and style |
+| Sources | Only the UCI dataset page, Realinho et al. (2022), scikit-learn (Pedregosa et al., 2011) and the course slides are cited |
