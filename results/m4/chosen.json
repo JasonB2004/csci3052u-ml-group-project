@@ -1,0 +1,22 @@
+{
+  "knn": {
+    "k": 7,
+    "metric": "euclidean"
+  },
+  "tree": {
+    "criterion": "entropy",
+    "max_depth": 12,
+    "min_samples_split": 32,
+    "actual_depth": 12,
+    "leaves": 158
+  },
+  "softmax": {
+    "alpha": 0.3,
+    "lambda": 0,
+    "n_iters": 5000
+  },
+  "best_nonlinear": "Decision tree",
+  "python": "3.13.15",
+  "scikit-learn": "1.6.1",
+  "command": "python -m src.compare_models"
+}

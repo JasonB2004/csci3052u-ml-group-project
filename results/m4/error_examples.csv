@@ -1,0 +1,7 @@
+row_id,Course,Age at enrollment,Admission grade,Tuition fees up to date,Scholarship holder,Debtor,Curricular units 1st sem (enrolled),Curricular units 1st sem (approved),Curricular units 1st sem (grade),Target,Predicted,model
+3824,9119,18,129.8,1,0,0,5,0,0.0,Enrolled,Dropout,Decision tree
+278,9500,18,142.3,1,1,0,7,7,13.79714285714286,Enrolled,Graduate,Decision tree
+908,9238,20,130.0,1,0,0,6,4,11.25,Enrolled,Graduate,Decision tree
+2777,9670,19,122.4,1,0,0,5,4,13.75,Enrolled,Graduate,Decision tree
+2203,171,37,130.0,1,0,0,0,0,0.0,Dropout,Dropout,Decision tree
+1615,9085,26,101.0,1,0,0,6,3,12.666666666666666,Dropout,Dropout,Decision tree
